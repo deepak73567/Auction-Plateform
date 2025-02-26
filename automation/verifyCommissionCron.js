@@ -7,13 +7,13 @@ import { sendEmail } from "../utils/sendEmail.js";
 export const verifyCommissionCron = () => {
 
   cron.schedule("*/1 * * * *", async () => {
-    console.log(new Date().toISOString);
+    
     console.log("Running Verify Commission Cron...");
     const approvedProofs = await paymentProof.find({ status: "Approved" });
     for (const proof of approvedProofs) {
       try {
         const user = await User.findById(proof.userId);
-        console.log("proof id:",proof.userId)
+       
         let updatedUserData = {};
         if (user) {
           if (user.unpaidCommission >= proof.amount) {
@@ -69,7 +69,7 @@ export const verifyCommissionCron = () => {
 `;
           sendEmail({ email: user.email, subject, message });
         }
-        console.log(`User ${proof.userId} paid commission of ${proof.amount}`);
+       
       } catch (error) {
         console.error(
           `Error processing commission proof for user ${proof.userId}: ${error.message}`
