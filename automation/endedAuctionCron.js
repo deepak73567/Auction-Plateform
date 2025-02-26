@@ -16,7 +16,7 @@ export const endedAuctionCron = () => {
         commissionCalculated: false,
       });
 
-      console.log("end:",endedAuctions);
+      
       
 
       for (const auction of endedAuctions) {
