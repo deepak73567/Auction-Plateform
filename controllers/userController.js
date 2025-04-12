@@ -81,6 +81,53 @@ export const register = catchAsyncErrors(async (req, res, next) => {
             },
         },
     });
+    const welcomeSubject = `Welcome to Auction Platform, ${user.userName}! 🎉`;
+
+    let welcomeMessage = "";
+    
+    if (user.role === "Auctioneer") {
+        welcomeMessage = `
+    Hi ${user.userName} 👋,<br><br>
+    
+    Welcome to the Auction Platform! 🏆<br><br>
+    
+    We're thrilled to have you onboard as an Auctioneer. You can now start creating your own auctions, set fair terms, and reach potential bidders.<br><br>
+    
+    Make sure to list your items professionally to attract the best buyers.<br><br>
+    
+    Wishing you great success ahead! 🚀<br><br>
+    
+    Best regards,<br>
+    The Auction Team
+        `;
+    } else {
+        welcomeMessage = `
+    Hi ${user.userName} 👋,<br><br>
+    
+    Welcome to the Auction Platform! 🎉<br><br>
+    
+    You're now a registered Bidder and can start exploring live auctions, bidding on your favorite items, and grabbing amazing deals.<br><br>
+    
+    Enjoy the experience and happy bidding! 🛍️<br><br>
+    
+    Best regards,<br>
+    The Auction Team
+        `;
+    }
+    
+    try {
+        await sendEmail({
+            email: user.email,
+            subject: welcomeSubject,
+            message: welcomeMessage, // Send HTML formatted message
+            isHTML: true, // Specify it's an HTML email
+        });
+    } catch (error) {
+        console.error("❌ Error sending welcome email:", error.message);
+    }
+    
+
+    
 
     generateToken(user, "User Registered", 201, res);
 });
