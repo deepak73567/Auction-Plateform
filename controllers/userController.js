@@ -81,7 +81,7 @@ export const register = catchAsyncErrors(async (req, res, next) => {
             },
         },
     });
-    const welcomeSubject = `Welcome to Auction Platform, ${user.userName}! 🎉`;
+    const welcomeSubject = `Welcome to WinWager Platform, ${user.userName}! 🎉`;
 
     let welcomeMessage = "";
     
@@ -89,7 +89,7 @@ export const register = catchAsyncErrors(async (req, res, next) => {
         welcomeMessage = `
     Hi ${user.userName} 👋,<br><br>
     
-    Welcome to the Auction Platform! 🏆<br><br>
+    Welcome to the WinWager! 🏆<br><br>
     
     We're thrilled to have you onboard as an Auctioneer. You can now start creating your own auctions, set fair terms, and reach potential bidders.<br><br>
     
@@ -104,7 +104,7 @@ export const register = catchAsyncErrors(async (req, res, next) => {
         welcomeMessage = `
     Hi ${user.userName} 👋,<br><br>
     
-    Welcome to the Auction Platform! 🎉<br><br>
+    Welcome to the WinWager! 🎉<br><br>
     
     You're now a registered Bidder and can start exploring live auctions, bidding on your favorite items, and grabbing amazing deals.<br><br>
     
@@ -223,7 +223,7 @@ export const verifyOTPAndResetPassword = catchAsyncErrors(async (req, res, next)
     await sendEmail({
         email: user.email,
         subject: "Password Reset Successful - Auction Platform",
-        message: `Dear Auction Platform user,\n\nYour password has been reset successfully.\n\nIf this wasn't you, please contact support immediately.`,
+        message: `Dear WinWager Platform user,\n\nYour password has been reset successfully.\n\nIf this wasn't you, please contact support immediately.`,
       });
     user.password = newPassword;
     user.resetOTP = undefined;
