@@ -68,7 +68,7 @@ export const endedAuctionCron = () => {
             );
 
             
-            const subject = `🎉 Congratulations! You Won an Auction on Deepak Auction 🎉`;
+            const subject = `🎉 Congratulations! You Won an Auction on WinWager Auction Plateform 🎉`;
             const message = `
               <p>Dear ${User.userName},</p>
             
@@ -94,7 +94,7 @@ export const endedAuctionCron = () => {
               <p>Thank you for participating, and we hope to see you in more auctions soon!</p>
             
               <p>Best regards,</p>
-              <p><b>Deepak Auction Team</b></p>
+              <p><b>WinWager Auction Team</b></p>
             `;
             
            
