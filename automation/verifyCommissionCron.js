@@ -65,7 +65,7 @@ export const verifyCommissionCron = () => {
   </ul>
 
   <p>Best regards,</p>
-  <p><b>DEEPAK, Auction Team</b></p>
+  <p><b>WinWager, Auction Team</b></p>
 `;
           sendEmail({ email: user.email, subject, message });
         }
