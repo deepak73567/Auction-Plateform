@@ -157,14 +157,19 @@ export const getProfile = catchAsyncErrors(async (req, res, next) => {
 });
 
 export const logout = catchAsyncErrors(async (req, res, next) => {
-    res.status(200).cookie("token", "", {
-        expires: new Date(Date.now()),
-        httpOnly: true,
-    }).json({
-        success: true,
-        message: "Logout Successfully. "
+  res
+    .status(200)
+    .clearCookie("token", {
+      httpOnly: true,
+      secure: true,         // ✅ Required for HTTPS (Netlify)
+      sameSite: "None",     // ✅ To allow cross-site cookies (from backend to frontend)
+    })
+    .json({
+      success: true,
+      message: "Logout Successfully.",
     });
 });
+
 
 export const fetchLeaderboard = catchAsyncErrors(async (req, res, next) => {
     const users = await User.find({ moneySpent: { $gt: 0 } });
